@@ -5,6 +5,8 @@
 
 class Register {
 public:
+    Register(const uint32_t value) :
+        _value(value) {}
     uint32_t& value() { return _value; }
 
 private:
