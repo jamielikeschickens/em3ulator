@@ -3,6 +3,9 @@
 
 #include <cstdint>
 
+namespace em3ulator {
+namespace Register {
+
 class Register {
 public:
     Register(const uint32_t value) :
@@ -12,5 +15,25 @@ public:
 private:
     uint32_t _value;
 };
+
+/* This register holds the If-Then execution state bits 
+ * for the Thumb IT instruction. See IT on page A7-242 for 
+ * a description of the IT instruction and the 
+ * associated IT block
+ */
+class ITSTATE {
+public:
+    ITSTATE(const uint8_t val) : _val(val) {}
+
+    uint8_t& value();
+
+    bool isInITBlock();
+    void ITAdvance();
+private:
+    uint8_t _val = 0;
+};
+
+}
+}
 
 #endif

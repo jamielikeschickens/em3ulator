@@ -10,13 +10,12 @@ set(TESTS_SRC_DIR "./src/tests")
 set(EM3ULATOR_SRCS
     ${SOURCE_DIR}/Register.cpp
     ${SOURCE_DIR}/Instruction.cpp
-    ${SOURCE_DIR}/FlexibleOperand.cpp
 )
 
 set(TESTS_SRC_DIR "./src/tests")
 
 set(TEST_SRCS
-    ${TESTS_SRC_DIR}/FlexibleOperand.t.cpp
+    ${TESTS_SRC_DIR}/Register.t.cpp
 )
 
 
