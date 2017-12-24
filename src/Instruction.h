@@ -14,20 +14,32 @@ using Register::Register;
 
 class Instruction {
 public:
+    Instruction(const uint32_t repr);
     virtual void execute() = 0;
+    uint32_t getRepr();
+private:
+    const uint32_t _repr;
 };
 
 class LSL : public Instruction {
 public:
-    LSL(std::shared_ptr<Register> rd, 
+    enum class Encoding {
+        T1,
+        T2
+    };
+
+    LSL(const uint32_t repr,
+        const Encoding encoding,
+        std::shared_ptr<Register> rd, 
         std::shared_ptr<Register> rm,
-        const uint32_t imm);
+        const uint8_t imm);
 
     void execute();
 private:
+    const Encoding _encoding;
     const std::shared_ptr<Register> _rd;
     const std::shared_ptr<Register> _rm;
-    const uint32_t _imm = 0;
+    const uint8_t _imm = 0;
 };
 
 }

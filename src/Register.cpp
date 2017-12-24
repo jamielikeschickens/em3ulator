@@ -21,9 +21,12 @@ void ITSTATE::ITAdvance() {
         const uint8_t oldVal = _val;
         _val = (_val & 0xE0);
 
-        // 0001 1111
         _val = (_val | (0x1F & (oldVal << 1)));
     }
+}
+
+bool ITSTATE::lastInITBlock() {
+    return (_val & 0x0F) == 0x08;
 }
 
 }

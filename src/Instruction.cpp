@@ -6,9 +6,19 @@
 namespace em3ulator {
 namespace Instruction {
 
-LSL::LSL(std::shared_ptr<Register> rd,
+Instruction::Instruction(const uint32_t repr) :
+    _repr(repr) {}
+
+uint32_t Instruction::getRepr() {
+    return _repr;
+}
+
+LSL::LSL(const uint32_t repr,
+         const Encoding encoding,
+         std::shared_ptr<Register> rd,
          std::shared_ptr<Register> rm, 
-         const uint32_t imm) :
+         const uint8_t imm) :
+    Instruction(repr), _encoding(encoding), 
     _rd(rd), _rm(rm), _imm(imm) {}
 
 void LSL::execute() {

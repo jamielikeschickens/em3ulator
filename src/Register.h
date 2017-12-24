@@ -29,6 +29,7 @@ public:
 
     bool isInITBlock();
     void ITAdvance();
+    bool lastInITBlock();
 private:
     uint8_t _val = 0;
 };
