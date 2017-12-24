@@ -34,6 +34,48 @@ private:
     uint8_t _val = 0;
 };
 
+/* Program status is reported in the 32-bit 
+ * Application Program Status Register (APSR). 
+ */
+class APSR {
+public:
+    /* Negative condition code flag. 
+     * Set to bit[31] of the result of the instruction. 
+     * If the result is regarded as a two's complement 
+     * signed integer, then N == 1 if the result is 
+     * negative and N == 0 if it is positive or zero 
+     */
+    bool& N;
+
+    /* Zero condition code flag. Set to 1 if the result 
+     * of the instruction is zero, and to 0 otherwise. 
+     * A result of zero often indicates an equal result 
+     * from a comparison.
+     */
+    bool& Z;
+
+    /* Carry condition code flag. Set to 1 if the instruction 
+     * results in a carry condition, for example an unsigned 
+     * overflow on an addition.
+     */
+    bool& C;
+
+    /* Overflow condition code flag. Set to 1 if the 
+     * instruction results in an overflow condition, 
+     * for example a signed overflow on an addition.
+     */
+    bool& V;
+
+    /* Set to 1 if a SSAT or USAT instruction changes the 
+     * input value for the signed or unsigned range 
+     * of the result. In a processor that implements 
+     * the DSP extension, the processor sets this bit to 
+     * 1 to indicate an overflow on some multiplies. 
+     * Setting this bit to 1 is called saturation.
+     */
+    bool& Q;
+};
+
 }
 }
 
