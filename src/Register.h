@@ -27,9 +27,10 @@ public:
 
     uint8_t& value();
 
-    bool isInITBlock();
+    bool isInITBlock() const;
     void ITAdvance();
-    bool lastInITBlock();
+    bool lastInITBlock() const;
+    uint8_t currentCondition() const;
 private:
     uint8_t _val = 0;
 };
@@ -45,26 +46,26 @@ public:
      * signed integer, then N == 1 if the result is 
      * negative and N == 0 if it is positive or zero 
      */
-    bool& N;
+    bool& N() { return _N; }
 
     /* Zero condition code flag. Set to 1 if the result 
      * of the instruction is zero, and to 0 otherwise. 
      * A result of zero often indicates an equal result 
      * from a comparison.
      */
-    bool& Z;
+    bool& Z() { return _Z; }
 
     /* Carry condition code flag. Set to 1 if the instruction 
      * results in a carry condition, for example an unsigned 
      * overflow on an addition.
      */
-    bool& C;
+    bool& C() { return _C; }
 
     /* Overflow condition code flag. Set to 1 if the 
      * instruction results in an overflow condition, 
      * for example a signed overflow on an addition.
      */
-    bool& V;
+    bool& V() { return _V; }
 
     /* Set to 1 if a SSAT or USAT instruction changes the 
      * input value for the signed or unsigned range 
@@ -73,7 +74,13 @@ public:
      * 1 to indicate an overflow on some multiplies. 
      * Setting this bit to 1 is called saturation.
      */
-    bool& Q;
+    bool& Q();
+private:
+    bool _N;
+    bool _Z;
+    bool _C;
+    bool _V;
+    bool _Q;
 };
 
 }

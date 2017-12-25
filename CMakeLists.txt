@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.9)
 project(em3ulator)
 
 set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_FLAGS "-Wall")
+set(CMAKE_CXX_FLAGS "-g -Wall")
 
 set(SOURCE_DIR "./src")
 set(TESTS_SRC_DIR "./src/tests")
@@ -10,12 +10,14 @@ set(TESTS_SRC_DIR "./src/tests")
 set(EM3ULATOR_SRCS
     ${SOURCE_DIR}/Register.cpp
     ${SOURCE_DIR}/Instruction.cpp
+    ${SOURCE_DIR}/Processor.cpp
 )
 
 set(TESTS_SRC_DIR "./src/tests")
 
 set(TEST_SRCS
     ${TESTS_SRC_DIR}/Register.t.cpp
+    ${TESTS_SRC_DIR}/Processor.t.cpp
 )
 
 

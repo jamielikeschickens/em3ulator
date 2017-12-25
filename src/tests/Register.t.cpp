@@ -70,17 +70,47 @@ TEST(Register_ITSTATE, entryPoint2InstructionBlockAdvance) {
 
 TEST(Register_ITSTATE, entryPoint1InstructionBlockAdvance) {
     // GIVEN
-    // 0110 1000
     ITSTATE r(0x68);
 
     // WHEN
-    // 0111 0000
     uint8_t expectedValue = 0x00;
     r.ITAdvance();
     uint8_t actualValue = r.value();
 
     // THEN
     EXPECT_EQ(expectedValue, actualValue);
+}
+
+TEST(Register_ITSTATE, currentConditionReturnCondBase) {
+    // GIVEN
+    ITSTATE r(0xA8);
+
+    // WHEN
+    uint8_t expectedValue = 0x0A;
+    uint8_t actualValue  = r.currentCondition();
+    
+    // THEN
+    EXPECT_EQ(expectedValue, actualValue);
+}
+
+TEST(Register_ITSTATE, currentConditionNotInITBlock) {
+    // GIVEN
+    ITSTATE r(0x00);
+
+    // WHEN
+    uint8_t expectedValue = 0x0E;
+    uint8_t actualValue  = r.currentCondition();
+    
+    // THEN
+    EXPECT_EQ(expectedValue, actualValue);
+}
+
+TEST(Register_ITSTATE, currentConditionThrowUnpredictable) {
+    // GIVEN
+    ITSTATE r(0x10);
+
+    // THEN
+    EXPECT_THROW(r.currentCondition(), std::runtime_error);
 }
 
 }
